@@ -6,8 +6,9 @@ import { Animated } from "react-animated-css";
 
 const styles = {
   container: {
-    height: "100vh",
-    background: "green",
+    height: "100%",
+    minHeight: "100vh",
+    background: "white",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -18,12 +19,15 @@ const styles = {
     alignItems: "center",
   },
   text: {
-    color: "white",
+    color: "black",
   },
   margin: {
     marginLeft: 0,
     marginRight: 0,
     padding: 0,
+  },
+  defaultPadding: {
+    padding: 10,
   },
 };
 
@@ -31,16 +35,21 @@ const Image = () => (
   <StaticQuery
     query={graphql`
       query {
-        file(relativePath: { eq: "gatsby-astronaut.png" }) {
+        file(relativePath: { eq: "author.jpg" }) {
           childImageSharp {
-            fixed(width: 300, height: 300) {
+            fixed(width: 250, height: 300) {
               ...GatsbyImageSharpFixed
             }
           }
         }
       }
     `}
-    render={data => <Img fixed={data.file.childImageSharp.fixed} />}
+    render={data => (
+      <Img
+        fixed={data.file.childImageSharp.fixed}
+        style={{ borderRadius: 5 }}
+      />
+    )}
   />
 );
 
@@ -56,7 +65,11 @@ const Profile = () => {
 
 const ProfileWrapper = ({ isVisible }) => {
   return (
-    <Animated animationIn="fadeIn" animationInDuration={3500} isVisible={isVisible}>
+    <Animated
+      animationIn="fadeIn"
+      animationInDuration={2000}
+      isVisible={isVisible}
+    >
       <div className="container">
         <div
           className="row justify-content-start align-items-center"
