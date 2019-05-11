@@ -2,6 +2,7 @@ import React from "react";
 import SkillCard from "./SkillCard";
 import TrackVisibility from "react-on-screen";
 import { Animated } from "react-animated-css";
+import SkillsAdditional from './SkillsAdditional';
 
 const styles = {
   container: {
@@ -16,28 +17,34 @@ const styles = {
 
 
 
-const Skills = ({ isMobile }) => {
+const Skills = ({ isMobile, skills, additionalSkills }) => {
   return (
     <div style={{ ...styles.container }}>
-      <TrackVisibility>
-        <SkillsWrapper isMobile={isMobile} />
+      <TrackVisibility offset={800}>
+        <SkillsWrapper isMobile={isMobile} skills={skills} additionalSkills={additionalSkills} />
       </TrackVisibility>
     </div>
   );
 };
 
-const SkillsWrapper = ({ isVisible, isMobile }) => {
+const SkillsWrapper = ({ isVisible, isMobile, skills, additionalSkills }) => {
   return (
-    <Animated animationIn="fadeIn" animationInDuration={2000} isVisible={true}>
+    <Animated animationIn="fadeIn" animationInDuration={3500} isVisible={isVisible}>
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="col-12 align-self-center">
-            <h1 className="display-1 text-center" style={{ ...styles.text }}>
+            <h1 className="display-2 text-center" style={{ ...styles.text }}>
               Skills
             </h1>
+            <h4 className="text-center" style={{ ...styles.text }}>
+              What I'm good at
+            </h4>
           </div>
           <div className="col-12 align-self-center">
-            <SkillCard isMobile={isMobile} />
+            <SkillCard isMobile={isMobile} isVisible={isVisible} skills={skills} />
+          </div>
+          <div className="col-12 align-self-center">
+          <SkillsAdditional additionalSkills={additionalSkills} />
           </div>
         </div>
       </div>

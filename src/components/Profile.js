@@ -56,7 +56,7 @@ const Image = () => (
 const Profile = () => {
   return (
     <div style={{ ...styles.container }}>
-      <TrackVisibility once>
+      <TrackVisibility offset={800}>
         <ProfileWrapper />
       </TrackVisibility>
     </div>
@@ -67,7 +67,7 @@ const ProfileWrapper = ({ isVisible }) => {
   return (
     <Animated
       animationIn="fadeIn"
-      animationInDuration={2000}
+      animationInDuration={3500}
       isVisible={isVisible}
     >
       <div className="container">

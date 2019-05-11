@@ -12,7 +12,6 @@ import "../styles/main.scss";
 import "../styles/card.scss";
 
 
-
 const Layout = ({ children }) => {
   return (
     <StaticQuery
