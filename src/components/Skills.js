@@ -9,6 +9,7 @@ const styles = {
     height: "100%",
     minHeight: "100vh",
     background: "black",
+    padding: 30,
   },
   text: {
     color: "white",

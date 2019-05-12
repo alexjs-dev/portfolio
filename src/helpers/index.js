@@ -20,6 +20,16 @@ export const getColor = percent => {
   return { r: 180, g: 35, b: 19 };
 };
 
+export const getColorClassNes = percent => {
+  const value = parseInt(percent);
+  if (value > 70) {
+    return "is-success";
+  }
+  if (value > 45) {
+    return "is-warning";
+  }
+  return "is-error";
+}
 
 export const Image = (image, alt, styles) => {
   return (
@@ -32,6 +42,7 @@ export const Image = (image, alt, styles) => {
         height: 60,
         width: 60,
         objectFit: "contain",
+        imageRendering: "pixelated",
         ...styles,
       }}
     />

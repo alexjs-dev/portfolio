@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Image, ImageGenerator, getColor } from '../helpers';
+import { Image, ImageGenerator, getColorClassNes } from '../helpers';
 
 const SkillBar = ({ percent }) => {
-  const { r, g, b } = getColor(percent);
-  const rgb = `rgb(${r},${g},${b})`;
+  const colorClass = getColorClassNes(percent);
+  const value = parseInt(percent);
   return (
-    <div className="skill-bar-container" style={{ width: "100%" }}>
-      <div
-        className="skill-bar-box"
-        style={{ border: `2px solid rgba(${r},${g},${b},0.3)` }}
-      >
-        <div
-          className="skill-bar-1"
-          style={{
-            backgroundImage: `linear-gradient(-45deg, ${rgb} 25%, transparent 25%, transparent 50%, ${rgb} 50%, ${rgb} 75%, transparent 75%, transparent)`,
-            width: percent,
-          }}
-        />
-      </div>
-    </div>
+    <progress className={"nes-progress " + colorClass} value={value} max="100" />
   );
 };
 
@@ -68,7 +55,12 @@ const SkillCardItem = ({
         </div>
       </div>
       <div style={{ width: "50%" }}>
-        <SkillBar percent={percent} />
+        <section className="nes-container with-title">
+          <div id="progress" className="item">
+            <SkillBar percent={percent} />
+          </div>
+        </section>
+
       </div>
     </div>
   );

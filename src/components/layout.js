@@ -51,6 +51,8 @@ const Layout = ({ children }) => {
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossOrigin="anonymous"
           />
+             <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
+             <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 
           <div
             style={{

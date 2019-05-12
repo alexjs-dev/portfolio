@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import TrackVisibility from "react-on-screen";
+import moment from "moment";
 import { Animated } from "react-animated-css";
 
 const styles = {
@@ -56,7 +57,7 @@ const Image = () => (
 const Profile = () => {
   return (
     <div style={{ ...styles.container }}>
-      <TrackVisibility offset={800}>
+      <TrackVisibility offset={1200} once>
         <ProfileWrapper />
       </TrackVisibility>
     </div>
@@ -64,6 +65,30 @@ const Profile = () => {
 };
 
 const ProfileWrapper = ({ isVisible }) => {
+  const birthDate = new Date("September 29 1993 18:30");
+  const [currDate, setCurrDate] = useState(moment());
+  let diff = moment.duration(currDate.diff(birthDate));
+  let years = diff.years();
+  let months = diff.months()
+  let days = diff.days()
+  let hours = diff.hours();
+  let minutes = diff.minutes();
+  let seconds = diff.seconds();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrDate(moment);
+      diff = moment.duration(moment().diff(birthDate));
+      years = diff.years();
+      months = diff.months()
+      days = diff.days()
+      hours = diff.hours();
+      minutes = diff.minutes();
+      seconds = diff.seconds();
+      console.log('set', seconds);
+    }, 1000);
+  }, [currDate]);
+
   return (
     <Animated
       animationIn="fadeIn"
@@ -71,46 +96,29 @@ const ProfileWrapper = ({ isVisible }) => {
       isVisible={isVisible}
     >
       <div className="container">
-        <div
-          className="row justify-content-start align-items-center"
-          style={{ ...styles.margin }}
-        >
-          <div className="col-12 col-md-6">
-            <Image />
-          </div>
-          <div className="col-12 col-md-6">
-            <p style={{ ...styles.text }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Viverra tellus in hac habitasse platea dictumst. Fames ac turpis
-              egestas maecenas pharetra. Tincidunt lobortis feugiat vivamus at.
-              Nunc sed augue lacus viverra vitae. Massa tincidunt dui ut ornare
-              lectus sit amet est. Euismod quis viverra nibh cras. At auctor
-              urna nunc id cursus metus aliquam eleifend. Amet facilisis magna
-              etiam tempor orci eu. Bibendum at varius vel pharetra vel turpis
-              nunc. Nam at lectus urna duis convallis convallis tellus. Tortor
-              pretium viverra suspendisse potenti nullam ac tortor vitae purus.
-              Egestas quis ipsum suspendisse ultrices gravida dictum fusce.
-              Libero id faucibus nisl tincidunt eget. Eget sit amet tellus cras
-              adipiscing enim. Sociis natoque penatibus et magnis. Volutpat
-              blandit aliquam etiam erat velit scelerisque in dictum non. Amet
-              nisl purus in mollis nunc sed id semper risus. Eget aliquet nibh
-              praesent tristique magna sit. In est ante in nibh mauris cursus
-              mattis. Laoreet sit amet cursus sit amet dictum. Enim neque
-              volutpat ac tincidunt vitae semper quis lectus nulla. Amet
-              porttitor eget dolor morbi non. Senectus et netus et malesuada
-              fames ac turpis. Sit amet purus gravida quis blandit. Semper
-              viverra nam libero justo laoreet sit amet. Phasellus egestas
-              tellus rutrum tellus pellentesque eu tincidunt. Ut venenatis
-              tellus in metus vulputate eu scelerisque. Augue lacus viverra
-              vitae congue eu consequat ac felis donec. Faucibus ornare
-              suspendisse sed nisi lacus sed. Tellus mauris a diam maecenas sed
-              enim ut sem viverra. Pellentesque diam volutpat commodo sed
-              egestas egestas fringilla phasellus. Vulputate enim nulla aliquet
-              porttitor lacus. Placerat orci nulla pellentesque dignissim enim.
-            </p>
-          </div>
-        </div>
+        <section className="message-list">
+          <section className="message -left">
+            <div className="container">
+              <div
+                className="row justify-content-start align-items-center"
+                style={{ ...styles.margin }}
+              >
+                <div className="col-12 col-md-4">
+                  <Image />
+                </div>
+
+                <div className="col-12 col-md-8">
+                  <div className="nes-balloon from-left">
+                    <p >Class: Web Developer</p>
+                    <p>Experience: 1Y</p>
+                    <p>Name: Alex Dmitrijev</p>
+                    <p style={{ fontSize: 12 }}>Age: {years}Y {months}M {days}D {hours}:{minutes}:{seconds}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
       </div>
     </Animated>
   );

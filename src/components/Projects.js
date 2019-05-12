@@ -4,8 +4,8 @@ import { Animated } from "react-animated-css";
 
 const styles = {
   container: {
-    height: "100vh",
-    background: "white",
+    minHeight: "100vh",
+    background: "grey",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -32,15 +32,13 @@ const Projects = ({ isVisible }) => {
   return (
     <div>
       <Animated
-        animationIn="fadeIn"
-        animationOut="hinge"
+        animationIn="zoomIn"
+        animationOut="zoomOut"
         animationInDuration={3000}
         animationOutDelay={1000}
         isVisible={!isVisible}
       >
-        <div>
-          <h2>Projects</h2>
-        </div>
+        <h2>Projects</h2>
       </Animated>
       <ProjectList rootVisibility={isVisible} />
     </div>
@@ -67,7 +65,7 @@ const ProjectList = ({ rootVisibility }) => {
 const ProjectsWrapper = () => {
   return (
     <div style={{ ...styles.container }}>
-      <TrackVisibility offset={800}>
+      <TrackVisibility>
         <Projects />
       </TrackVisibility>
     </div>

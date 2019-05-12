@@ -24,7 +24,6 @@ const BackgroundSection = ({ className }) => (
           Tag="section"
           className={className}
           fluid={imageData}
-          style={{ }}
           backgroundColor={`#040e18`}
         />
       );
@@ -48,6 +47,7 @@ const StyledBackgroundImage = styled(Display)`
   height: 100%;
   background-position: bottom center;
   background-repeat: repeat-y;
+  image-rendering: pixelated;
   background-size: cover;
 `;
 
