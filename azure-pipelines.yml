@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install gatsby
+    npm install gatsby -g
     npm install
     gatsby build
     gatsby serve
