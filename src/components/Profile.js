@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import TrackVisibility from "react-on-screen";
-import moment from "moment";
 import { Animated } from "react-animated-css";
 
 const styles = {
@@ -54,41 +53,17 @@ const Image = () => (
   />
 );
 
-const Profile = () => {
+const ProfileWrapper = ({ profileAgeField }) => {
   return (
     <div style={{ ...styles.container }}>
       <TrackVisibility offset={1200} once>
-        <ProfileWrapper />
+        <Profile profileAgeField={profileAgeField} />
       </TrackVisibility>
     </div>
   );
 };
 
-const ProfileWrapper = ({ isVisible }) => {
-  const birthDate = new Date("September 29 1993 18:30");
-  const [currDate, setCurrDate] = useState(moment());
-  let diff = moment.duration(currDate.diff(birthDate));
-  let years = diff.years();
-  let months = diff.months()
-  let days = diff.days()
-  let hours = diff.hours();
-  let minutes = diff.minutes();
-  let seconds = diff.seconds();
-
-  useEffect(() => {
-    setTimeout(() => {
-      setCurrDate(moment);
-      diff = moment.duration(moment().diff(birthDate));
-      years = diff.years();
-      months = diff.months()
-      days = diff.days()
-      hours = diff.hours();
-      minutes = diff.minutes();
-      seconds = diff.seconds();
-      console.log('set', seconds);
-    }, 1000);
-  }, [currDate]);
-
+const Profile = ({ isVisible, profileAgeField }) => {
   return (
     <Animated
       animationIn="fadeIn"
@@ -109,10 +84,10 @@ const ProfileWrapper = ({ isVisible }) => {
 
                 <div className="col-12 col-md-8">
                   <div className="nes-balloon from-left">
-                    <p >Class: Web Developer</p>
+                    <p>Class: Web Developer</p>
                     <p>Experience: 1Y</p>
                     <p>Name: Alex Dmitrijev</p>
-                    <p style={{ fontSize: 12 }}>Age: {years}Y {months}M {days}D {hours}:{minutes}:{seconds}</p>
+                    <p style={{ fontSize: 10 }}>{profileAgeField}</p>
                   </div>
                 </div>
               </div>
@@ -124,4 +99,4 @@ const ProfileWrapper = ({ isVisible }) => {
   );
 };
 
-export default Profile;
+export default ProfileWrapper;

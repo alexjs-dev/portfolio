@@ -1,11 +1,13 @@
 import React from 'react';
 import TrackVisibility from "react-on-screen";
+import { StaticQuery, graphql } from "gatsby";
 import { Animated } from "react-animated-css";
+import Img from "gatsby-image";
 
 const styles = {
   container: {
     minHeight: "100vh",
-    background: "grey",
+    background: "white",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -28,19 +30,61 @@ const styles = {
   },
 };
 
+const OfbmImage = () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        file(relativePath: { eq: "ofbm2.jpg" }) {
+          childImageSharp {
+            fixed(width: 400) {
+              ...GatsbyImageSharpFixed
+            }
+            
+          }
+        }
+      }
+    `}
+    render={data => (
+      <Img
+        fixed={data.file.childImageSharp.fixed}
+        style={{ borderRadius: 5, objectFit: 'contain' }}
+      />
+    )}
+  />
+);
+
 const Projects = ({ isVisible }) => {
   return (
-    <div>
-      <Animated
-        animationIn="zoomIn"
-        animationOut="zoomOut"
-        animationInDuration={3000}
-        animationOutDelay={1000}
-        isVisible={!isVisible}
+    <div className="container">
+      <div
+        className="row justify-content-start align-items-center"
+        style={{ ...styles.margin }}
       >
-        <h2>Projects</h2>
-      </Animated>
-      <ProjectList rootVisibility={isVisible} />
+        <div className="col-12 col-md-4">
+          <div className="nes-balloon">
+            <p>OFBM2</p>
+            <p>Language: C#</p>
+            <p>Download</p>
+            <OfbmImage />
+          </div>
+        </div>
+        <div className="col-12 col-md-4">
+          <div className="nes-balloon">
+            <p>OFBM2</p>
+            <p>Language: C#</p>
+            <p>Download</p>
+            <OfbmImage />
+          </div>
+        </div>
+        <div className="col-12 col-md-4">
+          <div className="nes-balloon">
+            <p>OFBM2</p>
+            <p>Language: C#</p>
+            <p>Download</p>
+            <OfbmImage />
+          </div>
+        </div>
+      </div>
     </div>
 
   )

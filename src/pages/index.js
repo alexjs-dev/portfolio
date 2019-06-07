@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import BackgroundImage from "../components/BackgroundImage";
 import Profile from "../components/Profile";
 import Skills from "../components/Skills";
+import moment from "moment";
 import Projects from "../components/Projects";
 import { StaticQuery, graphql } from "gatsby";
 import SEO from "../components/seo";
@@ -15,6 +16,16 @@ const IndexPage = () => {
   useEffect(() => {
     setScreenWidth(window.innerWidth);
   }, [screenWidth]);
+  const birthDate = new Date("September 29 1993 18:30");
+  const [currentTime, setCurrentTime] = useState(moment());
+  const [profileAgeField, setProfileAgeField] = useState('');
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentTime(moment);
+      const diff = moment.duration(moment().diff(birthDate));
+      setProfileAgeField(`Age: ${diff.years()}Y ${diff.months()}M ${diff.days()}D ${String(diff.hours()).padStart(2, '0')}H ${String(diff.minutes()).padStart(2, '0')}M ${String(diff.seconds()).padStart(2, '0')}S`);
+    }, 1000);
+  }, [currentTime]);
 
   return (
     <StaticQuery
@@ -53,7 +64,7 @@ const IndexPage = () => {
                   subtitle={description}
                 />
               </BackgroundImage>
-              <Profile />
+              <Profile profileAgeField={profileAgeField} />
               <Skills isMobile={isMobile(screenWidth)} skills={skills} additionalSkills={additionalSkills} />
               <Projects />
             </Layout>
